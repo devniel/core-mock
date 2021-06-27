@@ -1,0 +1,437 @@
+{
+	"$schema": "http://json-schema.org/draft-06/schema#",
+	"properties": {
+		"Mutation": {
+			"type": "object",
+			"properties": {
+				"create": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/User"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {
+								"data": {
+									"$ref": "#/definitions/UserCreateInput"
+								}
+							},
+							"required": [
+								"data"
+							]
+						}
+					},
+					"required": [],
+					"description": "Register a new user"
+				},
+				"signIn": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/SigninOutput"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {
+								"password": {
+									"$ref": "#/definitions/String",
+									"type": "string"
+								},
+								"username": {
+									"$ref": "#/definitions/String",
+									"type": "string"
+								}
+							},
+							"required": [
+								"password",
+								"username"
+							]
+						}
+					},
+					"required": [],
+					"description": "Sign in a user"
+				},
+				"signUp": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/SignupOutput"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {
+								"data": {
+									"$ref": "#/definitions/SignupInput"
+								}
+							},
+							"required": [
+								"data"
+							]
+						}
+					},
+					"required": [],
+					"description": "Register a new user and send a verification e-mail"
+				},
+				"verifyEmail": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/VerifyOutput"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {
+								"token": {
+									"$ref": "#/definitions/String",
+									"type": "string"
+								}
+							},
+							"required": [
+								"token"
+							]
+						}
+					},
+					"required": [],
+					"description": "Verify a user"
+				}
+			},
+			"required": []
+		},
+		"Query": {
+			"type": "object",
+			"properties": {
+				"me": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/User"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {},
+							"required": []
+						}
+					},
+					"required": [],
+					"description": "Returns the current logged user."
+				},
+				"recipes": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {
+								"title": {
+									"$ref": "#/definitions/String",
+									"type": "string"
+								}
+							},
+							"required": []
+						}
+					},
+					"required": [],
+					"description": "Returns the list of users."
+				},
+				"users": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/User"
+							}
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {},
+							"required": []
+						}
+					},
+					"required": [],
+					"description": "Returns the list of users."
+				}
+			},
+			"required": []
+		}
+	},
+	"definitions": {
+		"String": {
+			"type": "string",
+			"title": "String",
+			"description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text."
+		},
+		"SigninOutput": {
+			"type": "object",
+			"properties": {
+				"access_token": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/String",
+							"type": "string"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {},
+							"required": []
+						}
+					},
+					"required": []
+				},
+				"user": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/User"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {},
+							"required": []
+						}
+					},
+					"required": []
+				}
+			},
+			"required": [
+				"access_token",
+				"user"
+			]
+		},
+		"SignupInput": {
+			"type": "object",
+			"properties": {
+				"email": {
+					"$ref": "#/definitions/String",
+					"type": "string"
+				},
+				"name": {
+					"$ref": "#/definitions/String",
+					"type": "string"
+				},
+				"password": {
+					"$ref": "#/definitions/String",
+					"type": "string"
+				},
+				"username": {
+					"$ref": "#/definitions/String",
+					"type": "string"
+				}
+			},
+			"required": [
+				"email",
+				"name",
+				"password",
+				"username"
+			]
+		},
+		"SignupOutput": {
+			"type": "object",
+			"properties": {
+				"message": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/String",
+							"type": "string"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {},
+							"required": []
+						}
+					},
+					"required": []
+				}
+			},
+			"required": [
+				"message"
+			]
+		},
+		"User": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/ID"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {},
+							"required": []
+						}
+					},
+					"required": []
+				},
+				"email": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/String",
+							"type": "string"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {},
+							"required": []
+						}
+					},
+					"required": []
+				},
+				"name": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/String",
+							"type": "string"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {},
+							"required": []
+						}
+					},
+					"required": []
+				},
+				"username": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/String",
+							"type": "string"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {},
+							"required": []
+						}
+					},
+					"required": []
+				},
+				"verified_email": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/Boolean",
+							"type": "boolean"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {},
+							"required": []
+						}
+					},
+					"required": []
+				},
+				"active": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/Boolean",
+							"type": "boolean"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {},
+							"required": []
+						}
+					},
+					"required": []
+				}
+			},
+			"required": [
+				"id",
+				"email",
+				"name",
+				"username",
+				"verified_email",
+				"active"
+			]
+		},
+		"ID": {
+			"type": "object",
+			"title": "ID",
+			"description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID."
+		},
+		"Boolean": {
+			"type": "boolean",
+			"title": "Boolean",
+			"description": "The `Boolean` scalar type represents `true` or `false`."
+		},
+		"UserCreateInput": {
+			"type": "object",
+			"properties": {
+				"email": {
+					"$ref": "#/definitions/String",
+					"type": "string"
+				},
+				"name": {
+					"$ref": "#/definitions/String",
+					"type": "string"
+				},
+				"password": {
+					"$ref": "#/definitions/String",
+					"type": "string"
+				},
+				"username": {
+					"$ref": "#/definitions/String",
+					"type": "string"
+				}
+			},
+			"required": [
+				"email",
+				"name",
+				"password",
+				"username"
+			]
+		},
+		"VerifyOutput": {
+			"type": "object",
+			"properties": {
+				"message": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/String",
+							"type": "string"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {},
+							"required": []
+						}
+					},
+					"required": []
+				},
+				"success": {
+					"type": "object",
+					"properties": {
+						"return": {
+							"$ref": "#/definitions/Boolean",
+							"type": "boolean"
+						},
+						"arguments": {
+							"type": "object",
+							"properties": {},
+							"required": []
+						}
+					},
+					"required": []
+				}
+			},
+			"required": [
+				"message",
+				"success"
+			]
+		}
+	}
+}

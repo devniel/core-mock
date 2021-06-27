@@ -1,0 +1,80 @@
+type: mutation
+name: signUp
+errors:
+  - user_was_not_created:
+    schema: >
+      {
+        message: "User was not created"
+      }
+  - username_already_exists:
+    schema: >
+      {
+        message: "Username already exists"
+      }
+  - email_already_exists:
+    schema: >
+      {
+        message: "Email already exists"
+      }
+  - invalid_email:
+    schema: >
+      {
+        message: "Invalid email"
+      }
+  - invalid_username_empty:
+    schema: >
+      {
+        message: "Invalid empty username"
+      }
+  - invalid_numeric_username_characters:
+    schema: >
+      {
+        message: "Invalid username characters (include a non-number character)"
+      }
+  - invalid_username_characters:
+    schema: >
+      {
+        message: "Invalid username characters, it can only contain letters, numbers and '_'"
+      }
+  - invalid_username_length:
+    schema: >
+      {
+        message: "Invalid username length"
+      }
+  - invalid_password_length:
+    schema: >
+      {
+        message: "Invalid password length"
+      }
+  - invalid_password_empty:
+    schema: >
+      {
+        message: "Invalid password empty"
+      }
+  - invalid_name_empty:
+    schema: >
+      {
+        message: "Invalid name empty"
+      }
+  - invalid_registration_token:
+    schema: >
+      {
+        message: "Invalid registration token"
+      }
+  - user_is_banned:
+    schema: >
+      {
+        message: "User is banned"
+      }
+  - email_sending_error:
+    schema: >
+      {
+        message: "Error while sending the email"
+      }
+success_response: >
+  {
+    signIn: {
+      user: string,
+      access_token: string
+    }
+  }

@@ -1,0 +1,30 @@
+type: mutation
+name: signIn
+errors:
+  - user_not_found:
+    schema: >
+      {
+        message: "User not found"
+      }
+  - invalid_credentials:
+    schema: >
+      {
+        message: "Invalid credentials"
+      }
+  - user_not_verified:
+    schema: >
+      {
+        message: "User not verified"
+      }
+  - user_is_banned:
+    schema: >
+      {
+        message: "User is banned"
+      }
+success_response: >
+  {
+    signIn: {
+      user: string,
+      access_token: string
+    }
+  }
